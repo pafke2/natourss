@@ -10,7 +10,7 @@ exports.aliasTopTours = async (req, res, next) => {
 
 exports.getAllTours = async (req, res) => {
   try {
-    console.log(req.query);
+    // console.log(req.query);
 
     // BUILD QUERY
     // FILTERING
