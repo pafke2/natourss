@@ -14,8 +14,7 @@ Natours is a production-ready, full-stack tour booking web application built wit
 
 ## 🚀 Live Demo
 
-- **Live Demo:** [[https://the-wild-oasis-gold-eight.vercel.app ↗️](https://natours-app-1hcx.onrender.com/) ]
-- 
+- **Live Demo:** [https://natours-app-1hcx.onrender.com/ ↗️](https://natours-app-1hcx.onrender.com/)
 
 ### ✨ Features
 
@@ -40,6 +39,10 @@ Natours is a production-ready, full-stack tour booking web application built wit
 ## Русский
 
 **Natours** — это полнофункциональное (Full-Stack) веб-приложение для бронирования туров, разработанное на **Node.js, Express, MongoDB и шаблонах Pug**. Проект включает в себя полноценный RESTful API, аутентификацию, автоматическую обработку платежей через сервис Stripe и интерактивную интеграцию с картами Mapbox.
+
+## 🚀 Демо
+
+- **Демо версия:** [https://natours-app-1hcx.onrender.com/ ↗️](https://natours-app-1hcx.onrender.com/)
 
 ### ✨ Основной функционал
 
