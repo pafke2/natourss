@@ -1,14 +1,9 @@
 # 🏔️ Natours — Full-Stack Tour Booking Application
 
-<p align="center">
-  <a href="#english">English</a>
-  <a href="#russian">Русский</a>
-</p>
-
+> **Language / Язык:** [English](#english) | [Русский](#русский)
 ---
 
 <a name="english"></a>
-## English
 
 Natours is a production-ready, full-stack tour booking web application built with **Node.js, Express, MongoDB, and Pug templates**. It features a complete RESTful API, authentication, automated payment processing via Stripe service and interactive Mapbox integration.
 
@@ -36,7 +31,6 @@ Natours is a production-ready, full-stack tour booking web application built wit
 ---
 
 <a name="russian"></a>
-## Русский
 
 **Natours** — это полнофункциональное (Full-Stack) веб-приложение для бронирования туров, разработанное на **Node.js, Express, MongoDB и шаблонах Pug**. Проект включает в себя полноценный RESTful API, аутентификацию, автоматическую обработку платежей через сервис Stripe и интерактивную интеграцию с картами Mapbox.
 
