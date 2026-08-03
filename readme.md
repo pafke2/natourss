@@ -1,6 +1,6 @@
 # 🏔️ Natours — Full-Stack Tour Booking Application
 
-> **Language / Язык:** [English](#english) | [Русский](#русский)
+> **Language / Язык:** [English](#english) | [Русский](#russian)
 ---
 
 <a name="english"></a>
