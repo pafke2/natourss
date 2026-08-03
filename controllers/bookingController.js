@@ -6,14 +6,13 @@ const catchAsync = require('../utils/catchAsync');
 const User = require('../models/userModel');
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
-  // GET THE CURRENTLY BOOKED TOUR
+  // Getting the currently booked tour
   const tour = await Tour.findById(req.params.tourId);
 
-  // CREATE CHECKOUT SESSION
+  // Creating checkout session
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     mode: 'payment',
-    // success_url: `${req.protocol}://${req.get('host')}/?tour=${req.params.tourId}&user=${req.user.id}&price=${tour.price}`,
     success_url: `${req.protocol}://${req.get('host')}/my-tours?alert=booking`,
     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
     customer_email: req.user.email,
@@ -36,22 +35,12 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     ],
   });
 
-  // CREATE SESSION AS A RESPONSE
+  // Sending session as a response
   res.status(200).json({
     status: 'success',
     session,
   });
 });
-
-// exports.createBookingCheckout = catchAsync(async (req, res, next) => {
-//   // THIS IS ONLY TEMPORARY, NOT SECURE
-//   const { tour, user, price } = req.query;
-//   if (!tour || !user || !price) return next();
-
-//   await Booking.create({ tour, user, price });
-
-//   res.redirect(req.originalUrl.split('?')[0]);
-// });
 
 const createBookingCheckout = async (session) => {
   const tour = session.client_reference_id;

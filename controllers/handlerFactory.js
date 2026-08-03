@@ -53,7 +53,7 @@ exports.getOne = (Model, popOptions) =>
   catchAsync(async (req, res, next) => {
     // Tour.findOne({_id: req.params.id})
 
-    // .POPULATE() TO POPULATE THE REFFERENCE FIELDS
+    // .populate() to populate the referenced fields
     // const tour = await Tour.findById(req.params.id).populate({
     //   path: 'guides',
     //   select: '-__v -passwordChangedAt',
@@ -78,20 +78,17 @@ exports.getOne = (Model, popOptions) =>
 
 exports.getAll = (Model) =>
   catchAsync(async (req, res, next) => {
-    // TO ALLOW FOR NESTED GET REVIEWS ON TOUR (HACK)
+    //  To allow for nested get reviews on tour (hack solution)
     let filterObj = {};
     if (req.params.tourId) filterObj = { tour: req.params.tourId };
 
-    // EXECUTE QUERY
     const features = new APIFeatuers(Model.find(filterObj), req.query)
       .filter()
       .sort()
       .limitFields()
       .paginate();
-    // const doc = await features.query.explain();
     const doc = await features.query;
 
-    // SEND RESPONSE
     res.status(200).json({
       status: 'success',
       requestedAt: req.requestTime,

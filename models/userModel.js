@@ -67,7 +67,7 @@ userSchema.pre('save', function (next) {
 });
 
 userSchema.pre(/^find/, function (next) {
-  // THIS POINTS TO CURRENT QUERY
+  // this -> query
 
   this.find({ active: { $ne: false } });
   next();
@@ -89,7 +89,7 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
     return JWTTimestamp < changedTimestamp;
   }
 
-  // FALSE MEANS NOT CHANGED
+  // false means not changed
   return false;
 };
 

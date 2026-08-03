@@ -25,7 +25,7 @@ const handleJWTExpiredError = () =>
   new AppError('Your token has expired! Please log in again.', 401);
 
 const sendErrorDev = (err, req, res) => {
-  // A) API
+  // A) Api
   if (req.originalUrl.startsWith('/api')) {
     return res.status(err.statusCode).json({
       status: err.status,
@@ -34,7 +34,7 @@ const sendErrorDev = (err, req, res) => {
       stack: err.stack,
     });
   }
-  // B) RENDERED WEBSITE
+  // B) Rendered website
   console.error('ERROR 💥', err);
   return res.status(err.statusCode).render('error', {
     title: 'Something went wrong!',
@@ -43,16 +43,16 @@ const sendErrorDev = (err, req, res) => {
 };
 
 const sendErrorProd = (err, req, res) => {
-  // A) API
+  // A) Api
   if (req.originalUrl.startsWith('/api')) {
-    // A) OPERATIONAL, TRUSTED ERROR: send message to client
+    // A) Operational/trusted error: send message to client
     if (err.isOperational) {
       return res.status(err.statusCode).json({
         status: err.status,
         message: err.message,
       });
     }
-    // B) PROGRAMMING OR OTHER UNKNOWN ERROR: don't leak error details
+    // B) Programming/unknown error: don't leak error details
     // 1 Log error
     console.error('ERROR 💥', err);
 
@@ -63,15 +63,15 @@ const sendErrorProd = (err, req, res) => {
     });
   }
 
-  // B) RENDERED WEBSITE
-  // A) OPERATIONAL, TRUSTED ERROR: send message to client
+  // B) Rendered website
+  // A) Operational/trusted error: send message to client
   if (err.isOperational) {
     return res.status(err.statusCode).render('error', {
       title: 'Something went wrong!',
       msg: err.message,
     });
   }
-  // B) PROGRAMMING OR OTHER UNKNOWN ERROR: don't leak error details
+  // B) Programming/unknown error: don't leak error details
   // 1 Log error
   console.error('ERROR 💥', err);
 

@@ -60,20 +60,20 @@ exports.getMe = (req, res, next) => {
 };
 
 exports.updateMe = catchAsync(async (req, res, next) => {
-  // CREATE ERROR IF USER POSTS PASSWORD DATA
+  // Create error if user POSTS password data
   if (req.body.password || req.body.passwordConfirm)
     return next(
       new AppError(
         'This route is not for password updates. Please use /updateMyPassword',
-        400, // BAD REQUEST
+        400,
       ),
     );
 
-  // FILTERED OUT UNWANTED FIELD NAMES THAT ARE NOW ALLOWED
+  // Filtering out unwanted field names
   const filteredBody = filterObj(req.body, 'name', 'email');
   if (req.file) filteredBody.photo = req.file.filename;
 
-  // UPDATE USER DOCUMENT WITHOUT VALIDATION
+  // Updating user doc without validation
   const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
     new: true,
     runValidators: true,
@@ -106,6 +106,6 @@ exports.createUser = (req, res) => {
 exports.getUser = factory.getOne(User);
 exports.getAllUsers = factory.getAll(User);
 
-// DO OT UPDATE PASSWORDS WITH THIS!
+// Don't update passwords with these middlewares
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);

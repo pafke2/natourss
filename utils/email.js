@@ -34,14 +34,14 @@ module.exports = class Email {
   }
 
   async send(template, subject) {
-    // RENDER HTML BASED ON PUG TEMPLATE
+    // Rendering html based on pug template
     const html = pug.renderFile(`${__dirname}/../views/email/${template}.pug`, {
       firstName: this.firstName,
       url: this.url,
       subject,
     });
 
-    // DEFINE EMAIL OPTIONS
+    // Email options
     const mailOptions = {
       from: this.from,
       to: this.to,
@@ -50,8 +50,7 @@ module.exports = class Email {
       text: htmlToText.convert(html),
     };
 
-    // CREATE A TRANSPORT AND SEND EMAIL
-
+    // Creating a transport and sending email
     await this.newTransport().sendMail(mailOptions);
   }
 

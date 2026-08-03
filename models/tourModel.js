@@ -81,14 +81,14 @@ const tourSchema = new mongoose.Schema(
       default: false,
     },
     startLocation: {
-      // GEOJSON
+      // Geojson
       type: {
         type: String,
         default: 'Point',
         enum: ['Point'],
       },
       coordinates: [Number],
-      // NON-REQUIRED FOR GEOJSON
+      // non-requried for geojson
       address: String,
       description: String,
     },
@@ -135,14 +135,14 @@ tourSchema.virtual('durationWeeks').get(function () {
   return this.duration / 7;
 });
 
-// VIRTUAL POPULATE, INSTEAD OF STORING IT IN DATABASE
+// Virtual populate instead of storing in db
 tourSchema.virtual('reviews', {
   ref: 'Review',
   foreignField: 'tour',
   localField: '_id',
 });
 
-// DOCUMENT MIDDLEWARE .save() and .crate() not .insertMany() not findOne...()
+// Doc middleware .save() and .crate() not .insertMany() not findOne...()
 tourSchema.pre('save', function (next) {
   this.slug = slugify(this.name, {
     lower: true,
@@ -169,7 +169,7 @@ tourSchema.pre('save', function (next) {
 //   next();
 // });
 
-// QUERY MIDDLEWARE
+// Query middleware
 tourSchema.pre(/^find/, function (next) {
   this.find({ secretTour: { $ne: true } });
   this.start = Date.now();
@@ -192,7 +192,7 @@ tourSchema.pre(/^find/, function (next) {
 //   next();
 // });
 
-// AGGREGATION MIDDLEWARE
+// Aggregation middleware
 // tourSchema.pre('aggregate', function (next) {
 //   this.pipeline().unshift({
 //     $match: { secretTour: { $ne: true } },

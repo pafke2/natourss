@@ -12,13 +12,13 @@ exports.getAllTours = async (req, res) => {
   try {
     // console.log(req.query);
 
-    // BUILD QUERY
-    // FILTERING
+    // Building query
+    // Filtering
     const queryObj = { ...req.query };
     const excludedFields = ['page', 'sort', 'limit', 'fields'];
     excludedFields.forEach((el) => delete queryObj[el]);
 
-    // ADVANCED FILTERING
+    // Advanced filtering
     let queryString = JSON.stringify(queryObj);
     queryString = queryString.replace(
       /\b(gte|gt|lte|lt)\b/g,
@@ -27,7 +27,7 @@ exports.getAllTours = async (req, res) => {
 
     let query = Tour.find(JSON.parse(queryString));
 
-    // SORTING
+    // Sorting
     if (req.query.sort) {
       // sort('price ratingsAverage')
       const sortBy = req.query.sort.split(',').join(' ');
@@ -36,7 +36,7 @@ exports.getAllTours = async (req, res) => {
       query = query.sort('-createdAt');
     }
 
-    // FIELD LIMITING
+    // Field limiting
     if (req.query.fields) {
       const fields = req.query.fields.split(',').join(' ');
       query = query.select(fields);
@@ -44,24 +44,15 @@ exports.getAllTours = async (req, res) => {
       query = query.select('-__v');
     }
 
-    // PAGINATION
+    // Pagination
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 100;
     const skip = (page - 1) * limit;
 
     query = query.skip(skip).limit(limit);
 
-    // EXECUTE QUERY
-
     const tours = await query;
 
-    // const query = Tour.find()
-    //   .where('duration')
-    //   .equals(5)
-    //   .where('difficulty')
-    //   .equals('easy');
-
-    // SEND RESPONSE
     res.status(200).json({
       status: 'success',
       requestedAt: req.requestTime,

@@ -2,7 +2,7 @@ const Review = require('../models/reviewModel');
 const factory = require('./handlerFactory');
 
 exports.setTourUserIds = (req, res, next) => {
-  // ALLOW NESTED ROUTES
+  // Allowing nested tours
   if (!req.body.tour) req.body.tour = req.params.tourId;
   if (!req.body.user) req.body.user = req.user.id;
 

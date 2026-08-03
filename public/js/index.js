@@ -6,7 +6,7 @@ import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
 import { showAlert } from './alerts';
 
-// DOM ELEMENTS
+// Dom elements
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
 const logOutBtn = document.querySelector('.nav__el--logout');
@@ -14,9 +14,7 @@ const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
 
-// VALUES
-
-// DELEGATION
+// Delegation
 if (mapBox) {
   const locations = JSON.parse(mapBox.dataset.locations);
   displayMap(locations);

@@ -19,22 +19,22 @@ const bookingRouter = require('./routes/bookingRoutes');
 const bookingController = require('./controllers/bookingController');
 const viewRouter = require('./routes/viewRoutes');
 
-// START EXPRESS APP
+// Start express
 const app = express();
 app.enable('trust proxy');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-// 1) GLOBAL MIDDLEWARES
-// IMPLEMENT CORS
+// 1) Global middleware
+// cors
 app.use(cors());
 app.options('*', cors());
 
-// SERVING STATIC FILES
+// Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// SET SECURITY HTTP HEADERS
+// Setting security http headers
 const scriptSrcUrls = [
   'https://api.mapbox.com',
   'https://api.tiles.mapbox.com',
@@ -73,12 +73,12 @@ app.use(
   }),
 );
 
-// DEVELOPMENT LOGGING
+// Development logging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// LIMIT REQUESTS FROM THE SAME API
+// Limit requests from the same IP
 const limiter = rateLimit({
   max: 100,
   windowMs: 60 * 60 * 1000,
@@ -92,18 +92,18 @@ app.post(
   bookingController.webhookCheckout,
 );
 
-// BODY PARSER, READING DATA FROM BODY INTO REQ.BODY
+// Parsing the body
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookierParser());
 
-// DATA SANITIZATION AGAINST NOSQL QUERY INJECTION
+// Data sanitization vs NOSQL query injection
 app.use(mongoSanitize());
 
-// DATA SANITIZATION AGAINST XSS
+// Data sanitization vs xss
 app.use(xss());
 
-// PREVENT PARAMETER POLLUTION
+// Preventing parameter pollution
 app.use(
   hpp({
     whitelist: [
@@ -119,14 +119,7 @@ app.use(
 
 app.use(compression());
 
-// TEST MIDDLEWARE
-app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
-  // console.log(req.cookies);
-  next();
-});
-
-// 3) ROUTES
+// 3) Routes
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
@@ -134,10 +127,6 @@ app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
 
 app.all('*', (req, res, next) => {
-  // const err = new Error(`Cant find ${req.originalUrl}`);
-  // err.status = 'fail';
-  // err.statusCode = 404;
-
   next(new AppError(`Cant find ${req.originalUrl}`, 404));
 });
 

@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { showAlert } from './alerts';
 
-// TYPE IS 'PASSWORD'/'DATA'
+// Type is 'password'/'data'
 export const updateSettings = async (data, type) => {
   try {
     const url =
