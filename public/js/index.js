@@ -13,11 +13,20 @@ const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
+const demoBtn = document.querySelector('.btn-demo-user');
 
 // Delegation
 if (mapBox) {
   const locations = JSON.parse(mapBox.dataset.locations);
   displayMap(locations);
+}
+
+if (demoBtn) {
+  demoBtn.addEventListener('click', () => {
+    e.preventDefault();
+    document.getElementById('email').value = 'loulou@example.com';
+    document.getElementById('password').value = 'test1234';
+  });
 }
 
 if (loginForm) {
