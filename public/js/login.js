@@ -31,7 +31,7 @@ export const logout = async () => {
       url: '/api/v1/users/logout',
     });
     if (res.data.status === 'success') {
-      location.reload(true);
+      window.location.href = '/';
     }
   } catch (err) {
     // console.log(err.response);
