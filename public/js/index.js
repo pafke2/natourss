@@ -22,7 +22,7 @@ if (mapBox) {
 }
 
 if (demoUserBtn) {
-  demoUserBtn.addEventListener('click', () => {
+  demoUserBtn.addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('email').value = 'loulou@example.com';
     document.getElementById('password').value = 'test1234';
