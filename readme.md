@@ -33,11 +33,11 @@ Follow these steps to run the project locally on your machine.
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account (or a local MongoDB instance)
 - [Stripe Account](https://stripe.com/) for test payment integration
 
-# Clone the repository
+### Clone the repository
 
 ```bash
 git clone [https://github.com/pafke2/natourss.git](https://github.com/pafke2/natourss.git)
-```
+
 
 # Install dependencies
 
@@ -68,3 +68,4 @@ npm run build
 npm run dev
 
 Open your browser and navigate to http://localhost:3000.
+```
