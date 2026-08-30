@@ -66,6 +66,12 @@ npm run build
 # Start the development server:
 
 npm run dev
+```
 
 Open your browser and navigate to http://localhost:3000.
-```
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — feel free to modify and use it for learning or personal projects!
