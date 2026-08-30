@@ -37,18 +37,12 @@ Follow these steps to run the project locally on your machine.
 
 ```bash
 git clone [https://github.com/pafke2/natourss.git](https://github.com/pafke2/natourss.git)
-
-
-# Install dependencies
-
-npm install
-
-# Navigate into project directory
-
 cd natourss
 
-# Environment Variables. Create a config.env file in the root directory of your project and populate it with your credentials:
+# Install dependencies
+npm install
 
+# Environment Variables. Create a config.env file in the root directory of your project and populate it with your credentials:
 NODE_ENV=development
 PORT=3000
 DATABASE=mongodb+scope_uri_here
@@ -60,11 +54,9 @@ STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
 STRIPE_WEBHOOK_SECRET=whsec_your_stripe_webhook_secret
 
 # Build Assets & Start App. Build the frontend JavaScript bundle:
-
 npm run build
 
 # Start the development server:
-
 npm run dev
 ```
 
