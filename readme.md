@@ -4,6 +4,12 @@
 
 Natours is a production-ready, full-stack tour booking web application built with **Node.js, Express, MongoDB, and Pug templates**. It features a complete RESTful API, authentication, automated payment processing via Stripe service and interactive Mapbox integration.
 
+## 📚 Documentation
+
+For detailed information about the available backend routes, query parameters, request bodies, and access control levels, please check the dedicated API documentation:
+
+👉 **[View Full API Documentation](./docs/API.md)**
+
 ### ✨ Features
 
 - 🔐 **Authentication & Authorization:** Secure sign-up/login, JWT authentication via HTTP-Only cookies, password resets, and role-based access control (`user`, `guide`, `lead-guide`, `admin`).
